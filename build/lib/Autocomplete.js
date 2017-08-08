@@ -157,7 +157,7 @@ var Autocomplete = function (_React$Component) {
       var matchedItem = this.getFilteredItems(props)[index];
       if (value !== '' && matchedItem) {
         var itemValue = getItemValue(matchedItem);
-        var itemValueDoesMatch = props.autoHighlight ? props.autoHighlight(itemValue, value) : false;
+        var itemValueDoesMatch = props.autoHighlight(itemValue, value);
         if (itemValueDoesMatch) {
           return { highlightedIndex: index };
         }
