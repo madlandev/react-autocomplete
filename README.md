@@ -62,11 +62,11 @@ generate the render tree for each item in the dropdown menu. `styles` is
 an optional set of styles that can be applied to improve the look/feel
 of the items in the dropdown menu.
 
-#### `autoHighlight: Boolean` (optional)
-Default value: `true`
+#### `autoHighlight: Function` (optional)
+Default value: `(itemValue, inputValue) => false`
 
 Whether or not to automatically highlight the top match in the dropdown
-menu.
+menu, according to the provided parameters.
 
 #### `inputProps: Object` (optional)
 Default value: `{}`
