@@ -463,7 +463,7 @@ Autocomplete.propTypes = {
   /**
    * A predicate function which decides on whether or not to automatically highlight the top match in the dropdown
    * menu.
-   * 
+   *
    * Arguments: `itemValue: String, inputValue: String, `
    */
   autoHighlight: PropTypes.func,
@@ -505,9 +505,6 @@ Autocomplete.defaultProps = {
     position: 'fixed',
     overflow: 'auto',
     maxHeight: '50%' // TODO: don't cheat, let it flow to the bottom
-  },
-  autoHighlight: function autoHighlight() {
-    return false;
   },
   onMenuVisibilityChange: function onMenuVisibilityChange() {}
 };
