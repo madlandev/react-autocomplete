@@ -21,7 +21,7 @@ Accessible, extensible, Autocomplete for React.js.
 />
 ```
 
-[Examples](https://reactcommunity.org/react-autocomplete/)
+Check out [more examples](https://reactcommunity.org/react-autocomplete/) and get stuck right in with the [online editor](http://jsbin.com/mipesawapi/edit?js,output).
 
 ## Install
 
@@ -39,8 +39,8 @@ yarn add react-autocomplete
 
 ### AMD/UMD
 
-* Development: [https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.js)
-* Production: [https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.5.10/dist/react-autocomplete.min.js)
+* Development: [https://unpkg.com/react-autocomplete@1.7.1/dist/react-autocomplete.js](https://unpkg.com/react-autocomplete@1.7.1/dist/react-autocomplete.js)
+* Production: [https://unpkg.com/react-autocomplete@1.7.1/dist/react-autocomplete.min.js](https://unpkg.com/react-autocomplete@1.7.1/dist/react-autocomplete.min.js)
 
 ## API
 
@@ -71,12 +71,13 @@ menu, according to the provided parameters.
 #### `inputProps: Object` (optional)
 Default value: `{}`
 
-Props that are applied to the `<input />` element rendered by
-`Autocomplete`. Any properties supported by `HTMLInputElement` can be
-specified, apart from the following which are set by `Autocomplete`:
-value, autoComplete, role, aria-autocomplete
-`inputProps` is commonly used for (but not limited to) placeholder,
-event handlers (onFocus, onBlur, etc.), autoFocus, etc.
+Props passed to `props.renderInput`. By default these props will be
+applied to the `<input />` element rendered by `Autocomplete`, unless you
+have specified a custom value for `props.renderInput`. Any properties
+supported by `HTMLInputElement` can be specified, apart from the
+following which are set by `Autocomplete`: value, autoComplete, role,
+aria-autocomplete. `inputProps` is commonly used for (but not limited to)
+placeholder, event handlers (onFocus, onBlur, etc.), autoFocus, etc..
 
 #### `menuStyle: Object` (optional)
 Default value:
@@ -125,6 +126,22 @@ menu. This is useful if you want to force a certain state based on your
 UX/business logic. Use it together with `onMenuVisibilityChange` for
 fine-grained control over the dropdown menu dynamics.
 
+#### `renderInput: Function` (optional)
+Default value:
+```jsx
+function(props) {
+  return <input {...props} />
+}
+```
+
+Arguments: `props: Object`
+
+Invoked to generate the input element. The `props` argument is the result
+of merging `props.inputProps` with a selection of props that are required
+both for functionality and accessibility. At the very least you need to
+apply `props.ref` and all `props.on<event>` event handlers. Failing to do
+this will cause `Autocomplete` to behave unexpectedly.
+
 #### `renderMenu: Function` (optional)
 Default value:
 ```jsx
@@ -140,6 +157,12 @@ returned tree includes every entry in `items` or else the highlight order
 and keyboard navigation logic will break. `styles` will contain
 { top, left, minWidth } which are the coordinates of the top-left corner
 and the width of the dropdown menu.
+
+#### `selectOnBlur: Boolean` (optional)
+Default value: `false`
+
+Whether or not to automatically select the highlighted item when the
+`<input>` loses focus.
 
 #### `shouldItemRender: Function` (optional)
 Arguments: `item: Any, value: String`
